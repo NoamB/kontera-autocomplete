@@ -1,0 +1,41 @@
+kontera-autocomplete
+
+A very simple Flex 3 autocomplete UI component based on TextInput class.
+
+Sends an event when user types (fetchData). The user can use this event to call the server and fetch the results. Once the results arrive the user can push them as the dataProvider of the autocomplete which will dispatch a second event (dataFetched), which the user can use to stop a spinner, for example.
+
+The fetchData event is not sent for each keypress. A timer is used to send it only after the user paused for a short time. This is for performance.
+
+In your MXML:
+=============
+<comp:AutoComplete id="txtAccountName" 
+				   styleName="finderInput"
+				   dataProvider="{accountsList}"
+				   labelField="name"
+				   fetchData="autoCompleteStartHandler(event)" 
+				   dataFetched="autoCompleteStopHandler(event)"
+				   width="180" 
+				   height="20"
+				   prompt="Please type...">
+</comp:AutoComplete>
+
+In ActionScript:
+================
+
+// listen on autocomplete change and dispatch the appropriate event
+private function autoCompleteStartHandler(event:Event):void
+{
+	dispatchEvent(new AutoCompleteSearchEvent(AutoCompleteSearchEvent.AUTO_COMPLETE_SEARCH,txtAccountName.text,true));
+	// start the spinner
+	...
+}
+
+private function autoCompleteStopHandler(event:Event):void
+{
+	// stop the spinner
+	...
+}
+
+TODO:
+=====
+"name" is hardcoded as a labelField - can be easily changed.
