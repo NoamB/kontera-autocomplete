@@ -1,6 +1,7 @@
 kontera-autocomplete
+http://www.kontera.com
 
-A very simple Flex 3 autocomplete UI component based on TextInput class.
+A very simple Flex 3 autocomplete UI component based on TextInput class. Developed by Kontera's Advertisers team at the end of 2009.
 
 Sends an event when user types (fetchData). The user can use this event to call the server and fetch the results. Once the results arrive the user can push them as the dataProvider of the autocomplete which will dispatch a second event (dataFetched), which the user can use to stop a spinner, for example.
 
